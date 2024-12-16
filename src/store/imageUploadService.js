@@ -1,28 +1,30 @@
-import axios from "axios";
-
-const FREEIMAGE_API_KEY = "6d207e02198a847aa98d0a2a901485a5";
+import { v2 as cloudinary } from 'cloudinary-react';
 
 export const uploadImage = async (file) => {
   try {
-    // object = FormData
+    // FormData object
     const formData = new FormData();
-    formData.append("key", FREEIMAGE_API_KEY);
-    formData.append("image", file);
+    formData.append('file', file);
+    formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
 
-    // API
-    const response = await axios.post(
-      "https://freeimage.host/api/1/upload",
-      formData,
+    // Upload to Cloudinary
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`, 
       {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        method: 'POST',
+        body: formData
       }
     );
 
+    if (!response.ok) {
+      throw new Error('Image upload failed');
+    }
+
+    const data = await response.json();
+
     return {
-      originalUrl: response.data.image.url,
-      thumbnailUrl: response.data.image.thumb.url,
+      originalUrl: data.secure_url,
+      thumbnailUrl: data.thumbnail_url || data.secure_url // Fallback if got no thumbnail
     };
   } catch (error) {
     console.error("Image upload failed:", error);

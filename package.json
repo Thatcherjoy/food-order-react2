@@ -2,8 +2,9 @@
   "name": "food-order-react2",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://freeimage.host",
   "dependencies": {
+    "@cloudinary/react": "^1.13.1",
+    "@cloudinary/url-gen": "^1.21.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.1.10",
@@ -12,6 +13,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^1.7.9",
+    "cloudinary-react": "^1.8.1",
     "cra-template": "1.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
