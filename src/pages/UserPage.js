@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Typography, Grid, Container } from "@mui/material";
 import Appbar from "../components/user/Appbar";
 import MealsItem from "../components/user/MealsItem";
-import Banner from "../components/user/Banner";
+import Banner from "../components/user/Banner/Banner";
 import Cart from "../components/user/Cart";
 import ItemsContext from "../store/items-context";
 import CartContext from "../store/cart-context";

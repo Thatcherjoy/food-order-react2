@@ -1,0 +1,38 @@
+.banner-container {
+  width: 100%;
+}
+
+.banner {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.banner-firstimage {
+  background-image: url('../../../images/Banner1.png');
+}
+
+.banner-secondimage {
+  background-image: url('../../../images/Banner2.png');
+}
+
+.banner-title {
+  margin-bottom: 16px;
+}
+
+.banner-subtitle {
+  margin-bottom: 32px;
+}
+
+.banner-button {
+  color: white;
+  border-radius: 16px;
+  padding: 8px 32px;
+}
