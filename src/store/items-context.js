@@ -1,5 +1,8 @@
 import React, { createContext, useState, useContext } from "react";
 import { uploadImage } from "./imageUploadService";
+import sushiImage from "../images/sushi.jpg";
+import schnitzelImage from "../images/schnitzel.jpg";
+import nasilemakImage from "../images/nasilemak.jpg";
 
 const initialMeals = [
   {
@@ -7,14 +10,21 @@ const initialMeals = [
     name: "Sushi",
     description: "Finest fish and veggies",
     price: 22.99,
-    image: "path_to_sushi_image",
+    image: sushiImage,
   },
   {
     id: "m2",
     name: "Schnitzel",
     description: "A german specialty!",
     price: 16.5,
-    image: "path_to_schnitzel_image",
+    image: schnitzelImage,
+  },
+  {
+    id: "m3",
+    name: "Nasi Lemak",
+    description: "A malaysian favourite",
+    price: 16.5,
+    image: nasilemakImage,
   },
 ];
 

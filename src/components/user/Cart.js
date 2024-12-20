@@ -14,8 +14,28 @@ import CartContext from "../../store/cart-context";
 
 const Cart = ({ onClose }) => {
   const cartContext = useContext(CartContext);
-
   const totalAmount = cartContext.totalAmount.toFixed(2);
+
+  const saveOrder = () => {
+    const order = {
+      id: Date.now(),
+      date: new Date().toISOString(),
+      items: cartContext.items,
+      totalAmount: cartContext.totalAmount,
+    };
+
+    // Get existing orders from localStorage
+    const existingOrders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+    const updatedOrders = [...existingOrders, order];
+
+    localStorage.setItem("orders", JSON.stringify(updatedOrders));
+
+    alert("Order saved successfully!");
+
+    cartContext.clearCart();
+    onClose();
+  };
 
   return (
     <Modal
@@ -111,23 +131,11 @@ const Cart = ({ onClose }) => {
             >
               <Button
                 variant="contained"
-                color="secondary"
-                onClick={onClose}
-                sx={{ mr: 1 }}
+                sx={{ backgroundColor: "green", color: "white" }}
+                onClick={saveOrder}
               >
-                Close
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  // Placeholder for order submission
-                  alert("Order Submitted!");
-                  cartContext.clearCart();
-                  onClose();
-                }}
-              >
-                Order
+                {" "}
+                Order{" "}
               </Button>
             </Box>
           </>

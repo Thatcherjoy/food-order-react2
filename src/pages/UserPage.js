@@ -5,12 +5,10 @@ import MealsItem from "../components/user/MealsItem";
 import Banner from "../components/user/Banner/Banner";
 import Cart from "../components/user/Cart";
 import ItemsContext from "../store/items-context";
-import CartContext from "../store/cart-context";
 
 const UserPage = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const itemsContext = useContext(ItemsContext);
-  const cartContext = useContext(CartContext);
 
   const openCartHandler = () => {
     setIsCartOpen(true);
@@ -31,7 +29,7 @@ const UserPage = () => {
       {isCartOpen && <Cart onClose={closeCartHandler} />}
 
       {/* Meals Display */}
-      <Container sx={{ mt: 3 }}>
+      <Container sx={{ mt: 3, pb: 10 }}>
         <Typography variant="h4" align="center" gutterBottom>
           Delicious Meals
         </Typography>

@@ -8,11 +8,7 @@ import {
   Paper,
   Button,
 } from "@mui/material";
-import {
-  AddCircle as AddIcon,
-  Dashboard as DashboardIcon,
-  Settings as SettingsIcon,
-} from "@mui/icons-material";
+import { AddCircle as AddIcon, Inbox as InboxIcon } from "@mui/icons-material";
 
 const Sidebar = ({ onOpenForm }) => {
   return (
@@ -31,15 +27,9 @@ const Sidebar = ({ onOpenForm }) => {
       <List>
         <ListItem button>
           <ListItemIcon>
-            <DashboardIcon />
+            <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <SettingsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
+          <ListItemText primary="Order History" />
         </ListItem>
       </List>
     </Paper>

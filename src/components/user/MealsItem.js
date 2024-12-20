@@ -24,23 +24,45 @@ const MealsItem = ({ meal }) => {
   };
 
   return (
-    <Card>
+    <Card
+      sx={{
+        maxWidth: 345,
+        m: 2.5,
+        borderRadius: 4,
+        boxShadow: "0px 3px 10px rgba(0, 0, 0, 0.1)",
+      }}
+    >
       <CardMedia
         component="img"
         alt={meal.name}
-        height="140"
+        height="200"
         image={meal.image || "https://via.placeholder.com/140"}
+        sx={{ borderRadius: "16px 16px 0 0" }}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {meal.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {meal.description}
-        </Typography>
-        <Typography variant="h6" color="primary">
-          ${meal.price.toFixed(2)}
-        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="body2" color="text.secondary">
+            {meal.description}
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              ml: 2.5,
+              color: "black",
+            }}
+          >
+            ${meal.price.toFixed(2)}
+          </Typography>
+        </Box>
 
         <Box
           sx={{
@@ -62,8 +84,18 @@ const MealsItem = ({ meal }) => {
           />
           <Button
             variant="contained"
-            color="primary"
             onClick={addToCartHandler}
+            sx={{
+              ml: 1.25,
+              backgroundColor: "black",
+              color: "white",
+              borderRadius: "20px",
+              px: 2.5,
+              py: 1,
+              "&:hover": {
+                backgroundColor: "#333333",
+              },
+            }}
           >
             Add to Cart
           </Button>
