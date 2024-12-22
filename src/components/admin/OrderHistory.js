@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import {
   Box,
   Card,
-  CardContent,
   Typography,
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Divider,
 } from "@mui/material";
-import { ChevronDown } from "lucide-react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const OrderHistory = () => {
   const [orders, setOrders] = useState([]);
@@ -30,7 +29,6 @@ const OrderHistory = () => {
     // Event listener
     window.addEventListener("storage", loadOrders);
 
-    // Cleanup
     return () => window.removeEventListener("storage", loadOrders);
   }, []);
 
@@ -46,8 +44,8 @@ const OrderHistory = () => {
 
   if (orders.length === 0) {
     return (
-      <Card className="w-full max-w-2xl mx-auto mt-4 p-4">
-        <Typography className="text-center text-gray-600">
+      <Card sx={{ maxWidth: "2xl", mx: "auto", mt: 4, p: 4 }}>
+        <Typography sx={{ textAlign: "center", color: "text.secondary" }}>
           No orders found. Your order history will appear here once you make a
           purchase.
         </Typography>
@@ -56,23 +54,34 @@ const OrderHistory = () => {
   }
 
   return (
-    <Box className="w-full max-w-2xl mx-auto mt-4">
-      <Typography variant="h4" className="mb-4 text-center">
+    <Box sx={{ width: "100%", maxWidth: "2xl", mx: "auto", mt: 4 }}>
+      <Typography variant="h4" sx={{ mb: 4, textAlign: "center" }}>
         Order History
       </Typography>
 
       {orders.map((order) => (
-        <Accordion key={order.id} className="mb-2">
-          <AccordionSummary expandIcon={<ChevronDown />} className="bg-gray-50">
-            <Box className="flex justify-between items-center w-full mr-4">
-              <Typography className="font-medium">
+        <Accordion key={order.id} sx={{ mb: 2 }}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            sx={{ bgcolor: "grey.50" }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "100%",
+                mr: 4,
+              }}
+            >
+              <Typography sx={{ fontWeight: 500 }}>
                 Order #{order.id.toString().slice(-6)}
               </Typography>
-              <Box className="flex gap-4">
-                <Typography className="text-gray-600">
+              <Box sx={{ display: "flex", gap: 4 }}>
+                <Typography sx={{ color: "text.secondary" }}>
                   {formatDate(order.date)}
                 </Typography>
-                <Typography className="font-medium">
+                <Typography sx={{ fontWeight: 500 }}>
                   ${order.totalAmount.toFixed(2)}
                 </Typography>
               </Box>
@@ -81,25 +90,45 @@ const OrderHistory = () => {
 
           <AccordionDetails>
             {order.items.map((item, index) => (
-              <Box key={index} className="py-2">
-                <Box className="flex justify-between items-center">
+              <Box key={index} sx={{ py: 2 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
                   <Box>
-                    <Typography className="font-medium">{item.name}</Typography>
-                    <Typography className="text-gray-600 text-sm">
+                    <Typography sx={{ fontWeight: 500 }}>
+                      {item.name}
+                    </Typography>
+                    <Typography
+                      sx={{ color: "text.secondary", fontSize: "0.875rem" }}
+                    >
                       Quantity: {item.amount} × ${item.price.toFixed(2)}
                     </Typography>
                   </Box>
-                  <Typography className="font-medium">
+                  <Typography sx={{ fontWeight: 500 }}>
                     ${(item.amount * item.price).toFixed(2)}
                   </Typography>
                 </Box>
-                {index < order.items.length - 1 && <Divider className="mt-2" />}
+                {index < order.items.length - 1 && <Divider sx={{ mt: 2 }} />}
               </Box>
             ))}
 
-            <Box className="flex justify-between items-center mt-4 pt-2 border-t">
-              <Typography className="font-medium">Total Amount</Typography>
-              <Typography className="font-medium">
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                mt: 4,
+                pt: 2,
+                borderTop: 1,
+                borderColor: "divider",
+              }}
+            >
+              <Typography sx={{ fontWeight: 500 }}>Total Amount</Typography>
+              <Typography sx={{ fontWeight: 500 }}>
                 ${order.totalAmount.toFixed(2)}
               </Typography>
             </Box>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Typography, Grid, Container } from "@mui/material";
 import Appbar from "../components/user/Appbar";
 import MealsItem from "../components/user/MealsItem";
@@ -9,6 +9,7 @@ import ItemsContext from "../store/items-context";
 const UserPage = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const itemsContext = useContext(ItemsContext);
+  const mealsRef = useRef(null);
 
   const openCartHandler = () => {
     setIsCartOpen(true);
@@ -18,18 +19,25 @@ const UserPage = () => {
     setIsCartOpen(false);
   };
 
+  const scrollToMeals = () => {
+    mealsRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <div>
       {/* App Bar */}
       <Appbar onShowCart={openCartHandler} />
 
-      <Banner />
+      <Banner onDiscoverClick={scrollToMeals} />
 
       {/* Cart Modal */}
       {isCartOpen && <Cart onClose={closeCartHandler} />}
 
       {/* Meals Display */}
-      <Container sx={{ mt: 3, pb: 10 }}>
+      <Container ref={mealsRef} sx={{ mt: 3, pb: 10 }}>
         <Typography variant="h4" align="center" gutterBottom>
           Delicious Meals
         </Typography>

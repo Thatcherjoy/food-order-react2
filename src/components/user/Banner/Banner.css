@@ -16,11 +16,11 @@
 }
 
 .banner-firstimage {
-  background-image: url('../../../images/Banner1.png');
+  background-image: url("../../../images/Banner1.png");
 }
 
 .banner-secondimage {
-  background-image: url('../../../images/Banner2.png');
+  background-image: url("../../../images/Banner2.png");
 }
 
 .banner-title {
@@ -32,7 +32,16 @@
 }
 
 .banner-button {
-  color: white;
-  border-radius: 16px;
+  background-color: white !important;
+  color: black !important;
+  border-radius: 25px;
   padding: 8px 32px;
+  position: relative;
+  top: -12vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.banner-button:hover {
+  background-color: #e0e0e0 !important;
+  color: black !important;
 }

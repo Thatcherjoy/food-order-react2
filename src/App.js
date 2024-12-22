@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState } from "react";
 import { CartProvider } from "./store/cart-context";
 import { ItemsProvider } from "./store/items-context";

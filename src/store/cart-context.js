@@ -104,7 +104,7 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-// Custom hook for CartContext
+//Hook for CartContext
 export const useCartState = () => {
   return useContext(CartContext);
 };
